@@ -1,0 +1,39 @@
+<div class="app-register">
+  <div class="container py-3">
+    <h5 class="text-center">{{ title }}</h5>
+    <div class="row justify-content-center">
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 col-xxl-4">
+        <form novalidate #register="ngForm" (ngSubmit)="register.form.valid && onUserRegister()">
+          <div class="form-group py-2">
+            <label>Username:</label>
+            <input type="text" class="form-control" name="username" #username="ngModel" [(ngModel)]="user.username" required/>
+            <span class="text-danger" *ngIf="submit && username.errors?.['required']">Username should not empty!</span>
+          </div>
+          <div class="form-group py-2">
+            <label>Useremail:</label>
+            <input type="text" class="form-control" name="useremail" #useremail="ngModel" [(ngModel)]="user.useremail" required/>
+            <span class="text-danger" *ngIf="submit && useremail.errors?.['required']">Useremail should not empty!</span>
+          </div>
+          <div class="form-group py-2">
+            <label>Password:</label>
+            <input type="text" class="form-control" name="password" #password="ngModel" [(ngModel)]="user.password" required minlength="6"/>
+            <span class="text-danger" *ngIf="submit && password.errors?.['required']">Password should not empty!</span>
+            <span class="text-danger" *ngIf="submit && password.errors?.['minlength']">Password should be more than or equal to 6 chars!</span>
+          </div>
+          <div class="form-group py-2">
+            <button type="submit" class="form-control btn btn-primary" (click)="submit=true">
+              <span class="spinner-border spinner-border-sm" [ngClass]="onLoader ? '' : 'visually-hidden'" role="status" aria-hidden="true"></span>
+              REGISTER
+            </button>
+          </div>
+        </form>
+        <p class="my-2">
+          If you have an account, please 
+          <a class="text-decoration-none text-primary" routerLink="/login">
+            login!
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
